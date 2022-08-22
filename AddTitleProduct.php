@@ -1,6 +1,6 @@
 <?php
 
-echo "<form method='post' action='" . htmlspecialchars( $_SERVER['PHP_SELF'] ) . "'>
+echo "<form method='post'>
         <input type='text' name='post_title' placeholder='Enter title for product'>
         <textarea name='content' id='content' cols='30' rows='10' placeholder='Description Product'></textarea>
         <input type='submit' name='submit' value='Add Data'>
