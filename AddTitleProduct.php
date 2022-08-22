@@ -1,7 +1,8 @@
 <?php
 
-echo "<form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
+echo "<form method='post' action='" . htmlspecialchars( $_SERVER['PHP_SELF'] ) . "'>
         <input type='text' name='post_title' placeholder='Enter title for product'>
+        <textarea name='content' id='content' cols='30' rows='10' placeholder='Description Product'></textarea>
         <input type='submit' name='submit' value='Add Data'>
       </form>";
 
@@ -9,14 +10,16 @@ echo "<form method='post' action='" . $_SERVER['PHP_SELF'] . "'>
  * Send Data into wp_posts
  */
 $my_product_title = $_POST["post_title"];
+$my_description_product = $_POST["post_title"];
 
 if (!empty($my_product_title)):
 
     $my_product = array(
-        'post_title' => $my_product_title,
-        'post_status' => 'publish',
-        'post_author' => 1,
-        'post_type' => 'product' #posts #product
+        'post_title'    => $my_product_title,
+        'post_status'   => 'publish',
+        'post_content'  =>  $my_description_product,
+        'post_author'   => 1,
+        'post_type'     => 'product' #posts #product
     );
 
     /**
@@ -25,6 +28,8 @@ if (!empty($my_product_title)):
      */
 
     wp_insert_post($my_product);
+
+
 
 endif;
 wp_reset_postdata();
